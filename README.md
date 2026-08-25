@@ -102,6 +102,71 @@ Feature-importance analysis showed that sender balance behavior was particularly
 
 KNN-based unsupervised anomaly detection was also explored.
 
-Within a deliberately constructed 50,000-transaction evaluation sample, **183 of 2,000 known fraudulent transactions (9.15%)** were identified as anomalies.
+---
 
-The result highlights an important distinction: **anomalous behavior is not necessarily fraudulent behavior**. Supervised classification was substantially more effective for detecting the known fraud cases in this labeled dataset.
+## 💡 Key Takeaways
+
+- **Class imbalance matters:** A baseline model achieved approximately 99.87% accuracy while detecting zero fraudulent transactions, demonstrating why accuracy alone is misleading for highly imbalanced fraud data.
+
+- **Transaction behavior provides useful fraud signals:** Fraud was concentrated in `TRANSFER` and `CASH_OUT` transactions and was associated with differences in transaction amounts and account balance behavior.
+
+- **Feature engineering had a major impact:** Engineering balance-change and balance-discrepancy features increased Random Forest fraud recall from **77.80% to 99.63%**.
+
+- **Model interpretability matters:** Feature-importance analysis showed that sender balance behavior, including `newbalanceOrig`, `orig_balance_change`, and `orig_balance_error`, contributed substantially to the Random Forest predictions.
+
+- **Anomalies are not automatically fraud:** Unsupervised anomaly detection identified only a subset of known fraudulent transactions and also classified some legitimate transactions as anomalous.
+
+---
+
+## ⚠️ Limitations
+
+- The dataset represents **simulated online payment activity**, so the results should not be interpreted as expected performance in a production banking environment.
+- Fraud represents only approximately **0.13%** of the complete dataset.
+- The strong Random Forest performance is partly associated with highly informative balance-related features.
+- Models were evaluated using a single stratified train-test split rather than repeated or temporal validation.
+- The anomaly-detection experiment used a deliberately constructed 50,000-transaction sample containing 4% known fraud for evaluation purposes. This does not represent the fraud prevalence of the complete dataset.
+- Unsupervised anomaly detection identifies unusual behavior rather than fraud specifically.
+- This project is an analytical demonstration and not a production fraud-detection system.
+
+---
+
+## 📁 Repository Structure
+
+```text
+online-payment-fraud-detection/
+│
+├── README.md
+│
+├── notebooks/
+│   └── Online_Payment_Fraud_Detection.ipynb
+│
+├── images/
+│   ├── fraud-class-distribution.png
+│   ├── fraud-rate-by-transaction-type.png
+│   ├── transaction-amount-distribution.png
+│   ├── model-comparison.png
+│   ├── confusion-matrix.png
+│   └── feature-importance.png
+│
+└── .gitignore
+```
+
+---
+
+## 📓 Full Analysis
+
+The complete Jupyter notebook contains the data-quality assessment, exploratory data analysis, feature engineering, machine-learning development, model evaluation, anomaly detection, visualizations, and interpretation.
+
+➡️ **[View the Complete Analysis Notebook](notebooks/Online_Payment_Fraud_Detection.ipynb)**
+
+---
+
+## 🔐 Skills Demonstrated
+
+`Data Analytics` • `Cybersecurity Analytics` • `Python` • `Pandas` • `NumPy` • `Exploratory Data Analysis` • `Feature Engineering` • `Machine Learning` • `Random Forest` • `Fraud Detection` • `Anomaly Detection` • `Model Evaluation` • `Data Visualization`
+
+---
+
+## 🚀 Project Summary
+
+Analyzed **6.3M+ online payment transactions** using Python to identify fraud patterns, engineer behavioral features, compare machine-learning models, and evaluate anomaly-detection techniques. Feature engineering improved Random Forest fraud recall from **77.80% to 99.63%**, demonstrating the value of transaction-balance behavior for fraud classification within the analyzed dataset.
